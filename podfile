@@ -1,0 +1,4 @@
+target 'iWeather' do
+	pod 'Masonry'
+	pod 'AFNetworking','~> 2.6.3'
+end
