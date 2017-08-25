@@ -1,2 +1,2 @@
 # WeatherApp
-imitated and simple App
+低配版仿和风天气...
