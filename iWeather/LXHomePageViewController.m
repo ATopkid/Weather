@@ -68,6 +68,7 @@
 //接收通知
 - (void)refreshData:(NSNotification *)object {
     NSString *str = [object object];
+
     [self getDataWithCityStr:str];
 }
 
@@ -106,6 +107,8 @@
         [self layoutLeftDrawerView];
         [self layoutView];
         [self.leftDrawerTableView reloadData];
+//        [self.leftDrawerTableView setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, 250, self.view.frame.size.height)];
+//        NSLog(@"===%lf %lf", self.leftDrawerTableView.frame.origin.x, self.leftDrawerTableView.frame.origin.y);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error when download:%@",error);
     }];
@@ -119,7 +122,7 @@
 - (UITableView *)leftDrawerTableView {
     if (!_leftDrawerTableView) {
         _leftDrawerTableView.tag = 11;
-        _leftDrawerTableView = [[UITableView alloc] initWithFrame:CGRectMake(-250, 0, 250, kHEIGHT) style:UITableViewStylePlain];
+        _leftDrawerTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 250, kHEIGHT) style:UITableViewStylePlain];
         _leftDrawerTableView.delegate = self;
         _leftDrawerTableView.dataSource = self;
 //        _leftDrawerTableView.bounces = NO;
@@ -345,6 +348,7 @@
     
 //    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
 //    [self.navigationController.navigationBar setShadowImage:nil];
+    
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
@@ -387,7 +391,7 @@
     [UIView setAnimationDuration:0.3];
     [self.rootScrollView setFrame:CGRectMake(self.view.frame.origin.x + 250, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
     [self.navigationController.navigationBar setFrame:CGRectMake(self.view.frame.origin.x + 250, 0, kWIDTH, 64)];
-    [self.leftDrawerTableView setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, 250, self.view.frame.size.height)];
+//    [self.leftDrawerTableView setFrame:CGRectMake(0, self.view.frame.origin.y, 250, self.view.frame.size.height)];
     [UIView commitAnimations];
     UITapGestureRecognizer *tapToBackGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeDrawerWithNothing)];
     self.rootScrollView.userInteractionEnabled = YES;
